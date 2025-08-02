@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: vlearn
+  data:
+    mongodb:
+      uri: mongodb://127.0.0.1:27017/vLearn?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.2.5

@@ -1,0 +1,83 @@
+# -------------------------------
+# OS-specific files
+# -------------------------------
+.DS_Store
+Thumbs.db
+
+# -------------------------------
+# IDEs
+# -------------------------------
+# IntelliJ
+.idea/
+*.iml
+*.iws
+out/
+
+# Eclipse
+.project
+.classpath
+.settings/
+bin/
+
+# VS Code
+.vscode/
+
+# NetBeans
+nbproject/private/
+build/
+
+# -------------------------------
+# Java / Maven / Gradle
+# -------------------------------
+target/
+build/
+.gradle/
+!gradle/wrapper/gradle-wrapper.jar
+.gradle-cache/
+dependency-cache/
+log/
+
+# Maven wrapper
+.mvn/
+mvnw
+mvnw.cmd
+
+# Gradle wrapper
+gradlew
+gradlew.bat
+
+# Logs
+*.log
+
+# -------------------------------
+# Spring Boot specific
+# -------------------------------
+# Ignore generated .jar or .war
+*.jar
+*.war
+
+# Application config (optional)
+# Uncomment if you don’t want to commit local secrets
+# application.properties
+# application.yml
+
+# -------------------------------
+# Other
+# -------------------------------
+*.class
+*.swp
+*.tmp
+*.bak
+*.orig
+*.rej
+
+# Local environment overrides
+.env
+.env.*
+
+# Ignore database files
+*.db
+*.h2.db
+
+# Generated files
+generated/
