@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: User-Service
+
+server:
+  port: 8082
+  servlet:
+    context-path: /user
+  
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka/

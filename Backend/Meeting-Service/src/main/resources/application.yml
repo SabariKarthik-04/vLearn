@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: Meeting-Service
+
+server:
+  port: 8083
+  servlet:
+    context-path: /meeting
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka/

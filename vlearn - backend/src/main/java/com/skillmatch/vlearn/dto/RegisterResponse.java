@@ -7,6 +7,5 @@ import lombok.Data;
 @Data
 public class RegisterResponse extends ResponseDTO {
 	private UserEntity user;
-	
-	
+	private String token;	
 }

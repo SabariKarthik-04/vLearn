@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: Api-Gateway
+  cloud:
+    gateway:
+      webflux:
+        routes:
+          - id: User-Service
+            uri: lb://User-Service
+            predicates:
+            - Path=/user/**
+          - id: Meeting-Service
+            uri: lb://Meeting-Service
+            predicates:
+            - Path=/meeting/**
+ 
+          
+  datasource:
+    url: jdbc:mysql://localhost:3306/vlearn_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: Ananth
+       
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    
+    
+server:
+  port: 8080
+  
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka/
+

@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: Api-Gateway
+  cloud:
+    gateway:
+      routes:
+        - id: User-Service
+          uri: lb://User-Service
+          predicates:
+            - Path=/user/*
+          filters:
+            - JwtAuthFilter
+        - id: Meeting-Service
+          uri: lb://Meeting-Service
+          predicates:
+            - Path=/meeting/**
+          filters:
+            - JwtAuthFilter
+        - id: Auth-Service
+          uri: lb://Auth-Service
+          predicates:
+            - Path=/auth/**
+ 
+
+    
+server:
+  port: 8080
+  
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka/
+

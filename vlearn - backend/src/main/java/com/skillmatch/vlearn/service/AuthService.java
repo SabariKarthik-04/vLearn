@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.skillmatch.vlearn.dto.AuthRequest;
+import com.skillmatch.vlearn.dto.RegisterResponse;
 import com.skillmatch.vlearn.entity.UserEntity;
 import com.skillmatch.vlearn.repository.UserRepository;
 
@@ -44,5 +45,13 @@ public class AuthService {
 		}
 		return "fail";
 				
+	}
+	public UserEntity fetchByUsername(String UserName) {
+		try {
+			return repo.findByEmail(UserName).get();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
 	}
 }
