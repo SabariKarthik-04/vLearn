@@ -1,37 +1,33 @@
 spring:
   application:
-    name: api-gateway
-
+    name: Api-Gateway
   cloud:
     gateway:
       routes:
-        - id: user-service
-          uri: lb://USER-SERVICE
+        - id: User-Service
+          uri: lb://User-Service
           predicates:
-            - Path=/user/**
-        - id: meeting-service
-          uri: lb://MEETING-SERVICE
+            - Path=/user/*
+          filters:
+            - JwtAuthFilter
+        - id: Meeting-Service
+          uri: lb://Meeting-Service
           predicates:
             - Path=/meeting/**
-        - id: auth-service
-          uri: lb://AUTH-SERVICE
+          filters:
+            - JwtAuthFilter
+        - id: Auth-Service
+          uri: lb://Auth-Service
           predicates:
             - Path=/auth/**
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
+ 
 
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-    database-platform: org.hibernate.dialect.MySQL8Dialect
-
+    
 server:
   port: 8080
-
+  
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      default-zone: http://localhost:8761/eureka/
+

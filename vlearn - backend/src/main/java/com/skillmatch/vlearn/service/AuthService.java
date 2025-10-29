@@ -4,11 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import com.skillmatch.vlearn.dto.AuthRequest;
-import com.skillmatch.vlearn.dto.RegisterResponse;
 import com.skillmatch.vlearn.entity.UserEntity;
 import com.skillmatch.vlearn.repository.UserRepository;
 
@@ -22,12 +20,10 @@ public class AuthService {
 	private AuthenticationManager authManager;
 	
 	@Autowired
-	private CustomUserDetailsService details;
-	
-	@Autowired
 	private JwtService jwtService;
 	
-	private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
+	@Autowired
+	private PasswordEncoder encoder;
 	
 	public UserEntity register(UserEntity user) {
 		if(repo.findByEmail(user.getEmail()).isEmpty()) {
