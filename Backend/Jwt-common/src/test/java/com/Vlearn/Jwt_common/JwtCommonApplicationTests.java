@@ -1,10 +1,10 @@
-package com.Vlearn.Api_gateway;
+package com.Vlearn.Jwt_common;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApiGatewayApplicationTests {
+class JwtCommonApplicationTests {
 
 	@Test
 	void contextLoads() {
