@@ -1,6 +1,44 @@
 ##############################
 # MAVEN BUILD / DEPENDENCIES #
 ##############################
+<<<<<<< HEAD
+HELP.md
+target/
+dependency-reduced-pom.xml
+*.mvn/
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
+.settings/
+release.properties
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+
+##############################
+# IDE SPECIFIC FILES         #
+##############################
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Eclipse
+.classpath
+.project
+.settings/
+bin/
+
+# VS Code
+.vscode/
+=======
+##############################
+# MAVEN BUILD / DEPENDENCIES #
+##############################
 target/
 dependency-reduced-pom.xml
 *.mvn/
@@ -89,3 +127,4 @@ build/
 *.bak
 *.old
 *.save
+>>>>>>> 8bd5c0b56dadc18bcb2b9da2e47eeb36ab405759
