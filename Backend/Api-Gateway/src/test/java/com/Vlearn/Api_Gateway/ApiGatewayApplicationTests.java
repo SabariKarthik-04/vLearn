@@ -1,4 +1,4 @@
-package com.Vlearn.Api_gateway;
+package com.Vlearn.Api_Gateway;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

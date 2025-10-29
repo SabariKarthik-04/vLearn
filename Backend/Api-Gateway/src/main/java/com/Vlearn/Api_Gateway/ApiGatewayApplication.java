@@ -1,4 +1,4 @@
-package com.Vlearn.Api_gateway;
+package com.Vlearn.Api_Gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
