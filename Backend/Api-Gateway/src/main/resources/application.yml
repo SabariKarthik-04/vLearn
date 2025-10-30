@@ -20,8 +20,12 @@ spring:
           uri: lb://Auth-Service
           predicates:
             - Path=/auth/**
- 
-
+        - id: Rating-Service
+          uri: lb://Rating-Service
+          predicates:
+            - Path=/rating/**
+          filters:
+            - JwtAuthFilter
     
 server:
   port: 8080
@@ -30,4 +34,18 @@ eureka:
   client:
     service-url:
       default-zone: http://localhost:8761/eureka/
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    urls:
+    - name: User-Service
+      url: /user/v3/api-docs
+    - name: Auth-Service
+      url: /auth/v3/api-docs
+    - name: Rating-Service
+      url: /rating/v3/api-docs
+    - name: Meeting-Service
+      url: /meeting/v3/api-docs
+
 

@@ -1,17 +1,33 @@
 server:
   port: 8084
+  servlet:
+    context-path: /rating
+
 spring:
   application:
     name: rating-service
+
   datasource:
-    url: jdbc:mysql:localhost:3306/feedbackdb
+    url: jdbc:mysql://localhost:3306/feedbackdb
     username: root
     password: 1234
+
   jpa:
     hibernate:
       ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
 
 eureka:
   client:
+    register-with-eureka: true
+    fetch-registry: true
     service-url:
-      default-zone: http://localhost:8761/eureka/  
+      defaultZone: http://localhost:8761/eureka/
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html

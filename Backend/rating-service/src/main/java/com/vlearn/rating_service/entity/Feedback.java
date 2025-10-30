@@ -16,10 +16,13 @@ public class Feedback {
     private Long id;
 
     @NotNull
-    private Long courseId;
+    private Long meetingId;
     
     @NotNull
-    private Long userId;
+    private Long mentorId;
+    
+    @NotNull
+    private Long reviewerId;
 
     private String comment;
     @NotNull

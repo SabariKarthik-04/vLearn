@@ -11,8 +11,9 @@ public class FeedbackMapper {
     public static Feedback toEntity(FeedbackReq feedbackReq){
         Feedback feedback  = new Feedback();
 
-        feedback.setCourseId(feedbackReq.getCourseId());
-        feedback.setUserId(feedbackReq.getUserId());
+        feedback.setMeetingId(feedbackReq.getMeetingId());
+        feedback.setReviewerId(feedbackReq.getReviewerId());
+        feedback.setReviewerId(feedbackReq.getReviewerId());
         feedback.setRating(feedbackReq.getRating());
         feedback.setComment(feedbackReq.getComment());
 
