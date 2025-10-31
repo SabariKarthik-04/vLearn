@@ -7,13 +7,13 @@ import lombok.Data;
 public class FeedbackReq {
 
     @NotNull
-    private Long meetingId;
+    private String meetingId;
     
     @NotNull
-    private Long mentorId;
+    private String mentorId;
     
     @NotNull
-    private Long reviewerId;
+    private String reviewerId;
     @NotNull
     private int rating;
     private String comment;

@@ -2,6 +2,7 @@ package com.vlearn.rating_service.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vlearn.rating_service.dto.FeedBackResMentorId;
 import com.vlearn.rating_service.dto.FeedbackReq;
 import com.vlearn.rating_service.dto.FeedbackRes;
 import com.vlearn.rating_service.service.FeedbackService;
@@ -44,6 +45,11 @@ public class FeedbackController {
     public ResponseEntity<FeedbackRes> updateFeedback(@PathVariable Long id, @Valid @RequestBody FeedbackReq entity) {
 
         return ResponseEntity.ok().body(feedbackService.updateFeedback(id, entity));
+    }
+    
+    @GetMapping("/getByMentorId/{id}")
+    public List<FeedBackResMentorId> getByMentorId(@PathVariable String id){
+    	return feedbackService.getFeedbackByMentorId(id);
     }
     
     @DeleteMapping("delete/{id}")

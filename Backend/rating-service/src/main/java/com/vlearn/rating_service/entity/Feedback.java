@@ -4,11 +4,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Entity
 @Data
+@Table(name = "feedback")
 public class Feedback {
     
     @Id
@@ -16,13 +18,13 @@ public class Feedback {
     private Long id;
 
     @NotNull
-    private Long meetingId;
+    private String meetingId;
     
     @NotNull
-    private Long mentorId;
+    private String mentorId;
     
     @NotNull
-    private Long reviewerId;
+    private String reviewerId;
 
     private String comment;
     @NotNull

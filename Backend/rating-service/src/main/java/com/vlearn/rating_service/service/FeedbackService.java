@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.vlearn.rating_service.dto.FeedBackResMentorId;
 import com.vlearn.rating_service.dto.FeedbackReq;
 import com.vlearn.rating_service.dto.FeedbackRes;
 import com.vlearn.rating_service.entity.Feedback;
@@ -29,7 +30,11 @@ public class FeedbackService {
     public void deleteFeedback (Long feedbackId){
         feedbackRepo.deleteById(feedbackId);
     }
-       
+    
+    public List<FeedBackResMentorId> getFeedbackByMentorId(String MentorId){
+    	return feedbackRepo.feedBackByMentorId(MentorId);
+    }
+    
     public List<FeedbackRes> getAllFeedbacks (){
         return feedbackRepo.findAll().stream().map(FeedbackMapper::toDTO).toList();
     }

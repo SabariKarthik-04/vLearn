@@ -3,6 +3,7 @@ package com.Vlearn.User_Service.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +20,10 @@ public class UserDataController {
 	
 	UserDataController(UserService service){
 		this.service = service;
+	}
+	@GetMapping
+	public String test() {
+		return "hello from user"; 
 	}
 	
 	@PostMapping("/save-user")

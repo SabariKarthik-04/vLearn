@@ -63,9 +63,9 @@ public class AuthService {
 	public boolean validateToken(String token) {
         String email = jUtil.extractEmail(token);
         Optional<UserEntity> optionalUser = repo.findByEmail(email);
-
         if (optionalUser.isPresent()) {
             UserEntity user = optionalUser.get();
+            System.out.println(user.getToken().equals(token) && jUtil.validateToken(token, email));
             return user.getToken().equals(token) && jUtil.validateToken(token, email);
         }
         return false;

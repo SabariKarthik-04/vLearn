@@ -57,7 +57,7 @@ public class JwtAuthFilter extends AbstractGatewayFilterFactory<JwtAuthFilter.Co
             return webClientBuilder.build()
                     // ⚠️ Use http:// not https:// when calling Eureka service
                     .get()
-                    .uri("http://AUTH-SERVICE/auth/validate?token=" + token)
+                    .uri("lb://AUTH-SERVICE/auth/validate?token=" + token)
                     .retrieve()
                     .onStatus(
                             status -> status.is4xxClientError() || status.is5xxServerError(),
