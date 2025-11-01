@@ -8,8 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.vlearn.rating_service.dto.FeedBackResMentorId;
-
+import com.vlearn.rating_service.dto.feedbackDTOs.FeedBackResMentorId;
 import com.vlearn.rating_service.entity.Feedback;
 
 @Repository

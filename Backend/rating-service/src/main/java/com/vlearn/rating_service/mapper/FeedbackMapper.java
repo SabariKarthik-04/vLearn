@@ -1,8 +1,8 @@
 package com.vlearn.rating_service.mapper;
 
 
-import com.vlearn.rating_service.dto.FeedbackReq;
-import com.vlearn.rating_service.dto.FeedbackRes;
+import com.vlearn.rating_service.dto.feedbackDTOs.FeedbackReq;
+import com.vlearn.rating_service.dto.feedbackDTOs.FeedbackRes;
 import com.vlearn.rating_service.entity.Feedback;
 
 

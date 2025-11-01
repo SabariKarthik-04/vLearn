@@ -5,9 +5,9 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.vlearn.rating_service.dto.FeedBackResMentorId;
-import com.vlearn.rating_service.dto.FeedbackReq;
-import com.vlearn.rating_service.dto.FeedbackRes;
+import com.vlearn.rating_service.dto.feedbackDTOs.FeedBackResMentorId;
+import com.vlearn.rating_service.dto.feedbackDTOs.FeedbackReq;
+import com.vlearn.rating_service.dto.feedbackDTOs.FeedbackRes;
 import com.vlearn.rating_service.entity.Feedback;
 import com.vlearn.rating_service.mapper.FeedbackMapper;
 import com.vlearn.rating_service.repo.FeedbackRepo;

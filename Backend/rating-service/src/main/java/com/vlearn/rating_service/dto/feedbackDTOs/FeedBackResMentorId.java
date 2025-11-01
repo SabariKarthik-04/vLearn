@@ -1,4 +1,4 @@
-package com.vlearn.rating_service.dto;
+package com.vlearn.rating_service.dto.feedbackDTOs;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
