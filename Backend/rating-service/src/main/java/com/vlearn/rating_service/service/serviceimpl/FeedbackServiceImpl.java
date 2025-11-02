@@ -22,20 +22,23 @@ public class FeedbackServiceImpl implements FeedbackService{
 
     private final FeedbackRepo feedbackRepo;
 
+
     public FeedbackServiceImpl(FeedbackRepo feedbackRepo) {
         this.feedbackRepo = feedbackRepo;
     }
-
+    
+    @Override
     public FeedbackRes createFeedback (FeedbackReq req){
         Feedback feedback = feedbackRepo.save(FeedbackMapper.toEntity(req));
 
         return ResponseBuilder.feedbackResBuilder(feedback , HttpStatus.CREATED, "New user created : " + feedback.getId());
     }
 
+    @Override
     public void deleteFeedback (Long feedbackId){
         feedbackRepo.deleteById(feedbackId);        
     }
-    
+    @Override
     public FeedbackResIdList getFeedbackByMentorId(String mentorId){
         try {
     		List<FeedBackResId> li = feedbackRepo.feedBackByMentorId(mentorId);
@@ -51,10 +54,12 @@ public class FeedbackServiceImpl implements FeedbackService{
 		}
     }
     
+    @Override
     public List<FeedbackRes> getAllFeedbacks (){
         return feedbackRepo.findAll().stream().map(FeedbackMapper::toDTO).toList();
     }
 
+    @Override
     public FeedbackRes updateFeedback (Long feedbackId,FeedbackReq feedbackReq){
         Optional<Feedback> op = feedbackRepo.findById(feedbackId);
         if (op.isPresent()){
@@ -67,6 +72,11 @@ public class FeedbackServiceImpl implements FeedbackService{
         else {
             return null;
         }
+    }
+
+    @Override
+    public FeedbackResIdList getFeedbackByReviewerId(String reviewerId) {
+        throw new UnsupportedOperationException("Unimplemented method 'getFeedbackByReviewerId'");
     }
 
 }
