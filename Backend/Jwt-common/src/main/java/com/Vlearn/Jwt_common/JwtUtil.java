@@ -3,7 +3,6 @@ package com.Vlearn.Jwt_common;
 import java.security.Key;
 import java.util.Date;
 
-import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

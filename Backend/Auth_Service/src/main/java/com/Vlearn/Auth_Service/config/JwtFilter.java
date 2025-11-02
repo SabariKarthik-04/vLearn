@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.Collections;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -31,7 +32,9 @@ public class JwtFilter extends OncePerRequestFilter {
 	private UserRepository repo;
 	
 	@Override
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+	protected void doFilterInternal(@NonNull HttpServletRequest request,
+									@NonNull HttpServletResponse response,
+									@NonNull FilterChain filterChain)
 			throws ServletException, IOException {
 		final String authHeader = request.getHeader("Authorization");
 		String token = null;

@@ -35,7 +35,7 @@ public class JwtAuthFilter extends AbstractGatewayFilterFactory<JwtAuthFilter.Co
 			}
 			String token = authHeader.substring(7);
 			return webClientBuilder.build()
-					.get()
+					.get()	
 					.uri("https://AUTH-SERVICE/auth/validate?token="+token)
 					.retrieve()
 					.onStatus(status->status.is4xxClientError() || status.is5xxServerError(),

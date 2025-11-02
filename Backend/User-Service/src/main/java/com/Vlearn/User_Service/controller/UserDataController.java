@@ -11,6 +11,9 @@ import com.Vlearn.User_Service.DTO.userDTOs.SaveUserDTO;
 import com.Vlearn.User_Service.DTO.userDTOs.SaveUserResponseDTO;
 import com.Vlearn.User_Service.Entity.UserEntity;
 import com.Vlearn.User_Service.service.UserService;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 @RestController
 public class UserDataController {
@@ -56,4 +59,5 @@ public class UserDataController {
 		}
 		return ResponseEntity.status(resp.getHttpStatusCode()).body(resp);
 	}
+
 }
