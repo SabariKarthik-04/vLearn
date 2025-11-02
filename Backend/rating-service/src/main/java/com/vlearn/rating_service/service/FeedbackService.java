@@ -1,56 +1,28 @@
 package com.vlearn.rating_service.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.vlearn.rating_service.dto.feedbackDTOs.FeedBackResMentorId;
+import com.vlearn.rating_service.dto.feedbackDTOs.FeedbackResIdList;
 import com.vlearn.rating_service.dto.feedbackDTOs.FeedbackReq;
 import com.vlearn.rating_service.dto.feedbackDTOs.FeedbackRes;
-import com.vlearn.rating_service.entity.Feedback;
-import com.vlearn.rating_service.mapper.FeedbackMapper;
-import com.vlearn.rating_service.repo.FeedbackRepo;
 
 @Service
-public class FeedbackService {
+public interface FeedbackService {
 
 
-    private final FeedbackRepo feedbackRepo;
+    FeedbackRes createFeedback (FeedbackReq req);
 
-    public FeedbackService(FeedbackRepo feedbackRepo) {
-        this.feedbackRepo = feedbackRepo;
-    }
-
-    public FeedbackRes createFeedback (FeedbackReq req){
-        
-        return FeedbackMapper.toDTO(feedbackRepo.save(FeedbackMapper.toEntity(req)));
-    }
-
-    public void deleteFeedback (Long feedbackId){
-        feedbackRepo.deleteById(feedbackId);
-    }
+    void deleteFeedback (Long feedbackId);
     
-    public List<FeedBackResMentorId> getFeedbackByMentorId(String MentorId){
-    	return feedbackRepo.feedBackByMentorId(MentorId);
-    }
+    FeedbackResIdList getFeedbackByMentorId(String mentorId);
+
+    FeedbackResIdList getFeedbackByReviewerId(String reviewerId);
     
-    public List<FeedbackRes> getAllFeedbacks (){
-        return feedbackRepo.findAll().stream().map(FeedbackMapper::toDTO).toList();
-    }
+    List<FeedbackRes> getAllFeedbacks ();
 
-    public FeedbackRes updateFeedback (Long feedbackId,FeedbackReq feedbackReq){
-        Optional<Feedback> op = feedbackRepo.findById(feedbackId);
-        if (op.isPresent()){
-            Feedback feedback = op.get();
-            feedback.setRating(feedbackReq.getRating());
-            feedback.setComment(feedbackReq.getComment());
+    FeedbackRes updateFeedback (Long feedbackId,FeedbackReq feedbackReq);
 
-            return FeedbackMapper.toDTO(feedbackRepo.save(feedback));
-        }
-        else {
-            return null;
-        }
-    }
 
 }

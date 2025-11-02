@@ -9,6 +9,6 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class FeedbackMentorIdList extends ResponseDTO{
-	private List<FeedBackResMentorId> feedbacks;
+public class FeedbackResIdList extends ResponseDTO{
+	private List<FeedBackResId> feedbacks;
 }

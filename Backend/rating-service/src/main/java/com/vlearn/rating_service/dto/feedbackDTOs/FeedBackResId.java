@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class FeedBackResMentorId {
+public class FeedBackResId {
 	private Long feedbackId;
     private int rating;
     private String comment;
