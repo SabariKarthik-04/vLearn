@@ -3,6 +3,7 @@ package com.Vlearn.User_Service.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,8 +12,6 @@ import com.Vlearn.User_Service.DTO.userDTOs.SaveUserDTO;
 import com.Vlearn.User_Service.DTO.userDTOs.SaveUserResponseDTO;
 import com.Vlearn.User_Service.Entity.UserEntity;
 import com.Vlearn.User_Service.service.UserService;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RestController
@@ -22,6 +21,10 @@ public class UserDataController {
 	
 	UserDataController(UserService service){
 		this.service = service;
+	}
+	@GetMapping
+	public String test() {
+		return "hello from user"; 
 	}
 	
 	@PostMapping("/save-user")

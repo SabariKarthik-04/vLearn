@@ -1,8 +1,8 @@
 package com.vlearn.rating_service.mapper;
 
 
-import com.vlearn.rating_service.dto.FeedbackReq;
-import com.vlearn.rating_service.dto.FeedbackRes;
+import com.vlearn.rating_service.dto.feedbackDTOs.FeedbackReq;
+import com.vlearn.rating_service.dto.feedbackDTOs.FeedbackRes;
 import com.vlearn.rating_service.entity.Feedback;
 
 
@@ -11,8 +11,9 @@ public class FeedbackMapper {
     public static Feedback toEntity(FeedbackReq feedbackReq){
         Feedback feedback  = new Feedback();
 
-        feedback.setCourseId(feedbackReq.getCourseId());
-        feedback.setUserId(feedbackReq.getUserId());
+        feedback.setMeetingId(feedbackReq.getMeetingId());
+        feedback.setReviewerId(feedbackReq.getReviewerId());
+        feedback.setReviewerId(feedbackReq.getReviewerId());
         feedback.setRating(feedbackReq.getRating());
         feedback.setComment(feedbackReq.getComment());
 

@@ -1,6 +1,9 @@
 spring:
   application:
     name: User-Service
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/user_data
 
 server:
   port: 8082
@@ -11,3 +14,9 @@ eureka:
   client:
     service-url:
       default-zone: http://localhost:8761/eureka/
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
