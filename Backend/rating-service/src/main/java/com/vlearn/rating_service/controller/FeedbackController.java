@@ -7,6 +7,7 @@ import com.vlearn.rating_service.dto.feedbackDTOs.FeedbackMentorIdList;
 import com.vlearn.rating_service.dto.feedbackDTOs.FeedbackReq;
 import com.vlearn.rating_service.dto.feedbackDTOs.FeedbackRes;
 import com.vlearn.rating_service.service.FeedbackService;
+import com.vlearn.rating_service.service.FeedbackServiceInterface;
 
 import jakarta.validation.Valid;
 
@@ -28,7 +29,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 public class FeedbackController {
-    private final FeedbackService feedbackService;
+    private final FeedbackServiceInterface feedbackService;
 
     public FeedbackController(FeedbackService feedbackService) {
         this.feedbackService = feedbackService;

@@ -4,13 +4,17 @@ package com.Vlearn.User_Service.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.Vlearn.User_Service.DTO.ResponseBuilder;
 import com.Vlearn.User_Service.DTO.userDTOs.SaveUserDTO;
-import com.Vlearn.User_Service.DTO.userDTOs.SaveUserResponseDTO;
+import com.Vlearn.User_Service.DTO.userDTOs.UpdateUserRequestDTO;
+import com.Vlearn.User_Service.DTO.userDTOs.UserResponseDTO;
 import com.Vlearn.User_Service.Entity.UserEntity;
+import com.Vlearn.User_Service.Exception.UserNotFoundException;
 import com.Vlearn.User_Service.service.UserService;
 
 @RestController
@@ -21,44 +25,27 @@ public class UserDataController {
 	UserDataController(UserService service){
 		this.service = service;
 	}
-	@GetMapping
-	public String test() {
-		return "hello from user"; 
-	}
 	
 	@PostMapping("/save-user")
-	public ResponseEntity<SaveUserResponseDTO> SaveUser(@RequestBody SaveUserDTO newUser) {
-		SaveUserResponseDTO resp = new SaveUserResponseDTO();
-		try {
-			if(service.userExistsChecker(newUser.getEmail())) {
-				resp.setMessage("User aldready exists with this email");
-				resp.setHttpStatus(HttpStatus.CONFLICT.name());
-				resp.setHttpStatusCode(HttpStatus.CONFLICT.value());
-				resp.setUser(null);
-				resp.setUserid(null);
-			}else {
-				UserEntity user = service.saveUserDetails(newUser);
-				if(user!=null) {
-					resp.setMessage("User Saved Successfully");
-					resp.setHttpStatus(HttpStatus.CREATED.name());
-					resp.setHttpStatusCode(HttpStatus.CREATED.value());
-					resp.setUser(user);
-					resp.setUserid(user.getId());
-				}else {
-					resp.setMessage("Some Error Occured!!");
-					resp.setHttpStatus(HttpStatus.BAD_REQUEST.name());
-					resp.setHttpStatusCode(HttpStatus.BAD_REQUEST.value());
-					resp.setUser(null);
-					resp.setUserid(null);
-				}
-			}
-		} catch (Exception e) {
-			resp.setMessage("Some Error Occured!! "+e.getMessage());
-			resp.setHttpStatus(HttpStatus.BAD_REQUEST.name());
-			resp.setHttpStatusCode(HttpStatus.BAD_REQUEST.value());
-			resp.setUser(null);
-			resp.setUserid(null);
-		}
+	public ResponseEntity<UserResponseDTO> SaveUser(@RequestBody SaveUserDTO newUser) throws UserNotFoundException {
+		UserEntity user = service.saveUserDetails(newUser);
+		UserResponseDTO resp = ResponseBuilder.buildSuccess(user, "User created Sucessfully", HttpStatus.CREATED);
 		return ResponseEntity.status(resp.getHttpStatusCode()).body(resp);
 	}
+	
+	@GetMapping("/findbyemail/{email}")
+	public ResponseEntity<UserResponseDTO> findByEmail(@PathVariable String email) throws UserNotFoundException{
+			UserEntity user = service.getByemail(email);
+			UserResponseDTO resp = ResponseBuilder.buildSuccess(user, "User created Sucessfully", HttpStatus.ACCEPTED);	
+			return ResponseEntity.status(resp.getHttpStatusCode()).body(resp);
+	}	
+	
+	@PostMapping("/update-user")
+	public ResponseEntity<UserResponseDTO> postMethodName(@RequestBody UpdateUserRequestDTO user) throws Exception {
+		UserEntity user1 = service.updateUserDetails(user, user.getUserid());
+		UserResponseDTO resp = ResponseBuilder.buildSuccess(user1, "User Details Updated Sucessfully", HttpStatus.ACCEPTED);
+		return ResponseEntity.status(resp.getHttpStatusCode()).body(resp);
+	}
+	
 }
+

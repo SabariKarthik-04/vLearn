@@ -14,6 +14,7 @@ import com.Vlearn.User_Service.DTO.userDTOs.SaveUserDTO;
 import com.Vlearn.User_Service.DTO.userDTOs.UpdateUserRequestDTO;
 import com.Vlearn.User_Service.Entity.Skill;
 import com.Vlearn.User_Service.Entity.UserEntity;
+import com.Vlearn.User_Service.Exception.UserNotFoundException;
 import com.Vlearn.User_Service.Repository.UserRepository;
 
 @Service
@@ -28,31 +29,36 @@ public class UserService {
 	}
 	
 	public boolean userExistsChecker(String email) {
-		return repo.findByEmail(email) != null;
+		return repo.findByEmail(email).isPresent();
 	}
 	
-	public UserEntity saveUserDetails(SaveUserDTO entity) {
+	public UserEntity getByemail(String email) throws UserNotFoundException {
+		return repo.findByEmail(email).orElseThrow(()->new UserNotFoundException("user Not Found with this email "+ email));
+	}
+	
+	public UserEntity saveUserDetails(SaveUserDTO entity) throws UserNotFoundException {
 		try {
+			if(userExistsChecker(entity.getEmail())) {
+				throw new UserNotFoundException("User Aldready present with this email "+ entity.getEmail());
+			}
 			UserEntity save = conv.saveCoverter(entity);
 			if(save == null) return null;
 			return repo.save(save);
 		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+			throw e;
 		}
 	}
 	
-	public UserEntity updateUserDetails(UpdateUserRequestDTO newUser,String email) {
+	public UserEntity updateUserDetails(UpdateUserRequestDTO newUser,String id) throws Exception {
 		try {
-			UserEntity oldUser = repo.findByEmail(email);
+			UserEntity oldUser = repo.findById(id).orElseThrow(()->new UserNotFoundException("user Not Found with this id "+ id));
 			if(oldUser!=null) {
 				updateEntity(oldUser, newUser);
 				repo.save(oldUser);
 				return oldUser;
 			}else return null;
 		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+			throw e;
 		}
 	}
 	

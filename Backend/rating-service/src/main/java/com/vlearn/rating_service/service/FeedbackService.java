@@ -13,7 +13,7 @@ import com.vlearn.rating_service.mapper.FeedbackMapper;
 import com.vlearn.rating_service.repo.FeedbackRepo;
 
 @Service
-public class FeedbackService {
+public class FeedbackService implements FeedbackServiceInterface{
 
 
     private final FeedbackRepo feedbackRepo;
@@ -22,7 +22,7 @@ public class FeedbackService {
         this.feedbackRepo = feedbackRepo;
     }
 
-    public FeedbackRes createFeedback (FeedbackReq req){
+    public FeedbackRes createFeedback(FeedbackReq req){
         
         return FeedbackMapper.toDTO(feedbackRepo.save(FeedbackMapper.toEntity(req)));
     }
@@ -45,7 +45,6 @@ public class FeedbackService {
             Feedback feedback = op.get();
             feedback.setRating(feedbackReq.getRating());
             feedback.setComment(feedbackReq.getComment());
-
             return FeedbackMapper.toDTO(feedbackRepo.save(feedback));
         }
         else {

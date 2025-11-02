@@ -27,33 +27,23 @@ public class AuthController {
     }
 
 	@PostMapping("/register")
-	public ResponseEntity<RegisterResponse> register(@Valid @RequestBody RegisterRequest user){
+	public ResponseEntity<RegisterResponse> register(@Valid @RequestBody RegisterRequest user) throws Exception{
 		UserEntity saveUser = new UserEntity();
 		saveUser.setEmail(user.getEmail());
 		saveUser.setPassword(user.getPassword());
 		RegisterResponse resp = new RegisterResponse();
-		try {
-			String token = service.register(saveUser);
-			if(resp.equals("")) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-			resp.setToken(token);
-		} catch (Exception e) {
-			throw e;
-		}
+		String token = service.register(saveUser);
+		resp.setToken(token);
 		return ResponseEntity.ok(resp);
 	}
 	
 	@PostMapping("/login")
-	public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest user){
+	public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest user) throws Exception{
 		LoginResponse resp = new LoginResponse();
-		try {
-			System.out.println(user);
-			String token = service.login(user.getEmail(), user.getPassword());
-			if(token.equals("null")) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-			resp.setToken(token);
-		} catch (Exception e) {
-			throw e;
-		}
-		return ResponseEntity.ok(resp);
+		String token = service.login(user.getEmail(), user.getPassword());
+		resp.setToken(token);
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(resp);
+		
 	}
 	
 	@GetMapping("/validate")
