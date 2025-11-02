@@ -23,9 +23,9 @@ public class SecurityConfig {
 	
 	@Autowired
 	private JwtFilter jwtFilter;
-	
-	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
+    @Bean
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		return http.cors(cors->cors.configurationSource(corsConfigurationSource()))
 				.csrf(customizer -> customizer.disable())
 				.authorizeHttpRequests(req -> req
@@ -46,9 +46,9 @@ public class SecurityConfig {
 				.addFilterBefore(jwtFilter,UsernamePasswordAuthenticationFilter.class)
 				.build();		
 	}
-	
-	@Bean
-    public CorsConfigurationSource corsConfigurationSource() {
+
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         config.addAllowedOriginPattern("*"); // or specify domains ("http://localhost:3000", etc)
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
@@ -59,9 +59,9 @@ public class SecurityConfig {
         source.registerCorsConfiguration("/**", config);
         return source;
     }
-	
-	@Bean
-    public PasswordEncoder passwordEncoder() {
+
+    @Bean
+    PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 

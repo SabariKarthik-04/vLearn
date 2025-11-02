@@ -8,6 +8,6 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
-public class SaveUserResponseDTO extends ResponseDTO{
+public class UserResponseDTO extends ResponseDTO{
 	private UserEntity user;
 }
