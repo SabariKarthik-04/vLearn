@@ -33,9 +33,7 @@ public class UserDataController {
 		UserResponseDTO resp = ResponseBuilder.buildSuccess(user, "User created Sucessfully", HttpStatus.CREATED);
 		return ResponseEntity.status(resp.getHttpStatusCode()).body(resp);
 	}
-<<<<<<< HEAD
 
-=======
 	
 	@GetMapping("/findbyemail/{email}")
 	public ResponseEntity<UserResponseDTO> findByEmail(@PathVariable String email) throws UserNotFoundException{
@@ -51,6 +49,5 @@ public class UserDataController {
 		return ResponseEntity.status(resp.getHttpStatusCode()).body(resp);
 	}
 	
->>>>>>> 3d8834685580da90e148228e05da256c788c936f
 }
 
