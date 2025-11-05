@@ -35,14 +35,14 @@ export const VlearnProvider = ({children}) => {
       throw error;
     }
   }
-  useEffect(()=>{
-    if(token!=null){
-      const {sub } = jwtDecode(token);
-      fetchData(sub,token);
-    }else{
-      nav('/login')
-    }
-  },[])
+  // useEffect(()=>{
+  //   if(token!=null){
+  //     const {sub } = jwtDecode(token);
+  //     fetchData(sub,token);
+  //   }else{
+  //     nav('/login')
+  //   }
+  // },[])
 
   return (
     <VlearnContext.Provider value={{fetchData,userData}}>
