@@ -1,5 +1,6 @@
 import React from 'react'
 import Navbar from './components/Navbar'
+import ProfileCard from './components/ProfileCard'
 
 const ProfilesView = () => {
     const users = [
@@ -83,11 +84,10 @@ const ProfilesView = () => {
   return (
     <>
         <Navbar />
-        <div className='mt-5 mr-5'>
-            <div className='flex'>
-                <div>profile card 1</div>
-                <div>profile card 2</div>
-                <div>profile card 3</div>
+        <div className='mt-8 ml-10'>
+            <div className='flex gap-10'>
+                {users.map(u=>(<ProfileCard user={u}/>))}
+                
             </div>
         </div>
     </>
